@@ -1,8 +1,8 @@
 # utopiamall
 
-**Built using Flutter, MySQL, PHP, Rest API, and Third-party APIs**
-
 Welcome to UtopiaMall, the futuristic-era of fashion!
+
+**Built using Flutter, MySQL, PHP, Rest API, and Third-party APIs**
 
 ## Description
 
