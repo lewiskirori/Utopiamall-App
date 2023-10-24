@@ -1,6 +1,6 @@
-# utopiamall app
+# utopiamall
 
-**Built using GetX Flutter, MySQL, PHP, Rest API, and Third-party APIs**
+**Built using Flutter, MySQL, PHP, Rest API, and Third-party APIs**
 
 Welcome to UtopiaMall, the futuristic-era of fashion!
 
@@ -22,7 +22,7 @@ Follow these steps to get started with UtopiaMall App:
 
 1. **Clone the repository:**
 
-  ` git clone https://github.com/lewiskirori/UtopiaMall-App.git `
+  ``` git clone https://github.com/lewiskirori/UtopiaMall-App.git ```
 
 ## Acknowledgments
 
