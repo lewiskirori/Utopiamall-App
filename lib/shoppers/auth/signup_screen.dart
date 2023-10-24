@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // User name
                                   TextFormField(
                                     controller: usernameController,
-                                    validator: (val) => val == "" ? "Enter a valid username." : null,
+                                    validator: (val) => val == "" ? "Enter a valid account username." : null,
                                     decoration: InputDecoration(
                                       prefixIcon: const Icon(
                                         Icons.person_sharp,
