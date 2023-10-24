@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:utopiamall/shoppers/auth/signup_screen.dart';
+import 'package:utopiamall/shoppers/auth/signin_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
 
   var formKey = GlobalKey<FormState>();
+  var usernameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var isObsecure = true.obs;
@@ -30,16 +31,16 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
 
-                  // Sign in screen header
+                  // Sign up screen header
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 285,
                     child: Image.asset(
-                      "images/rdne--login.jpg",
+                      "images/andrea--register.jpg",
                     ),
                   ),
 
-                  // Sign in body
+                  // Sign up body
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Container(
@@ -61,11 +62,56 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Column(
                           children: [
                             
-                            // Sign in form
+                            // Sign up form
                             Form(
                               key: formKey,
                               child: Column(
                                 children: [
+
+                                  // User name
+                                  TextFormField(
+                                    controller: usernameController,
+                                    validator: (val) => val == "" ? "Enter a valid username." : null,
+                                    decoration: InputDecoration(
+                                      prefixIcon: const Icon(
+                                        Icons.person_sharp,
+                                        color: Colors.black,
+                                      ),
+                                      hintText: "Account Name (Username)",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                        borderSide: const BorderSide(
+                                          color: Colors.white60,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                        borderSide: const BorderSide(
+                                          color: Colors.white60,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                        borderSide: const BorderSide(
+                                          color: Colors.white60,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                        borderSide: const BorderSide(
+                                          color: Colors.white60,
+                                        ),
+                                      ),
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 14,
+                                        vertical: 6,
+                                      ),
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 18,),
 
                                   // Email Address
                                   TextFormField(
@@ -172,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   
                                   const SizedBox(height: 18,),
                   
-                                  // Sign in button
+                                  // Sign up button
                                   Material(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(30),
@@ -187,7 +233,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           horizontal: 28,
                                         ),
                                         child: Text(
-                                          "Sign In",
+                                          "Get Started",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,
@@ -196,26 +242,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   ),
-                                  
+
                                 ],
                               ),
                             ),
 
-                            SizedBox(height: 16,),
+                            const SizedBox(height: 16,),
                             
                             // Link text
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Don't have an account?"
+                                  "Already have a UtopiaMall account?"
                                 ),
                                 TextButton(
                                   onPressed: (){
-                                    Get.to(SignUpScreen());
+                                    Get.to(LoginScreen());
                                   },
                                   child: const Text(
-                                    "Create an account",
+                                    "Log in",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
@@ -226,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             // Footer heading
                             const Text(
-                              "Welcome back",
+                              "Create your account",
                               style: TextStyle(
                                 fontSize: 24,
                                 color: Colors.grey,
@@ -235,35 +281,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
 
                             SizedBox(height: 16,),
-
-                            const Text(
-                              "Or",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-
-                            // Admin link
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Are you a super user?"
-                                ),
-                                TextButton(
-                                  onPressed: (){
-
-                                  },
-                                  child: const Text(
-                                    "Tap here",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                       ),
