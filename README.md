@@ -22,7 +22,7 @@ Follow these steps to get started with UtopiaMall App:
 
 1. **Clone the repository:**
 
-   git clone https://github.com/lewiskirori/UtopiaMall-App.git
+  ` git clone https://github.com/lewiskirori/UtopiaMall-App.git `
 
 ## Acknowledgments
 
