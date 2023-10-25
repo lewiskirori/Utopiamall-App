@@ -67,6 +67,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Column(
                                 children: [
 
+                                  // Heading
+                                  Container(
+                                    child: const Text(
+                                      "Welcome back",
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 16,),
+
                                   // Email Address
                                   TextFormField(
                                     controller: emailController,
@@ -223,18 +237,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
-
-                            // Footer heading
-                            const Text(
-                              "Welcome back",
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                            SizedBox(height: 16,),
 
                             const Text(
                               "Or",

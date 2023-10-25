@@ -68,6 +68,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Column(
                                 children: [
 
+                                  // Heading
+                                  Container(
+                                    child: const Text(
+                                      "Create your account",
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 16,),
+
                                   // User name
                                   TextFormField(
                                     controller: usernameController,
@@ -269,18 +283,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-
-                            // Footer heading
-                            const Text(
-                              "Create your account",
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                            SizedBox(height: 16,),
                           ],
                         ),
                       ),
