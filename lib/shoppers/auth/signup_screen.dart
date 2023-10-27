@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:utopiamall/api_conn/api_conn.dart';
 import 'package:utopiamall/shoppers/auth/signin_screen.dart';
+import 'package:utopiamall/shoppers/model/shopper.dart';
 
 class SignUpScreen extends StatefulWidget {
 
@@ -15,6 +21,57 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var isObsecure = true.obs;
+
+  validateShopperEmail() async {
+    try{
+      var res = await http.post(
+        Uri.parse(API.validateEmail),
+        body: {
+          'shopper_email': emailController.text.trim(),
+        },
+      );
+
+      if(res.statusCode == 200) {
+        var resBodyOfValidateEmail = jsonDecode(res.body);
+
+        if(resBodyOfValidateEmail['emailFound'] == true){
+          Fluttertoast.showToast(msg: "An account with this email address already exists. Please try another email address to create a new account.");
+        }
+        else{
+          signupAndSaveShopperRecord();
+        }
+      }
+    }
+    catch(e){
+
+    }
+  }
+
+  signupAndSaveShopperRecord() async {
+    Shopper shopperModel = Shopper(
+      1,
+      usernameController.text.trim(),
+      emailController.text.trim(),
+      passwordController.text.trim(),
+    );
+
+    try{
+      var res = await http.post(
+        Uri.parse(API.signUp),
+        body: shopperModel.toJson(),
+      );
+
+      if(res.statusCode == 200){
+        var resBodyOfSignUp = jsonDecode(res.body);
+        if(resBodyOfSignUp['success'] == true){
+          Fluttertoast.showToast(msg: "Congratulations, signed up successfully! Welcome aboard.");
+        }
+      }
+    }
+    catch(e){
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +133,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         fontSize: 24,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 16,),
+
+                                  // Sub-heading
+                                  Container(
+                                    child: const Text(
+                                      "Join us and enjoy our futuristic fashion era!",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white60,
                                       ),
                                     ),
                                   ),
@@ -238,7 +308,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
                                       onTap: (){
-                  
+                                        if(formKey.currentState!.validate()){
+                                          // Email validation
+                                          validateShopperEmail();
+                                        }
                                       },
                                       borderRadius: BorderRadius.circular(30),
                                       child: Padding(
@@ -268,7 +341,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Already have a UtopiaMall account?"
+                                  "Already have a Utopiamall account?"
                                 ),
                                 TextButton(
                                   onPressed: (){

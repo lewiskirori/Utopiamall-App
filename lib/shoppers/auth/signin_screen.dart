@@ -81,6 +81,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   SizedBox(height: 16,),
 
+                                  // Sub-heading
+                                  Container(
+                                    child: const Text(
+                                      "Glad to see you again!",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white60,
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 16,),
+
                                   // Email Address
                                   TextFormField(
                                     controller: emailController,

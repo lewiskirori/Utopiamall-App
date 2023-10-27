@@ -1,12 +1,12 @@
-# utopiamall
+# Utopiamall
 
-Welcome to UtopiaMall, the futuristic-era of fashion!
+Welcome to Utopiamall, the futuristic-era of fashion!
 
 **Built using Flutter, MySQL, PHP, Rest API, and Third-party APIs**
 
 ## Description
 
-UtopiaMall is a virtual shopping experience that reimagines how we buy for fashion and style. Our app is the ultimate fashion endpoint since it focuses on providing a seamless and stylish shopping experience for an extensive variety of clothing as well as accessories.
+Utopiamall is a virtual shopping experience that reimagines how we buy for fashion and style. Our app is the ultimate fashion endpoint since it focuses on providing a seamless and stylish shopping experience for an extensive variety of clothing as well as accessories.
 
 ## Features
 
@@ -18,18 +18,18 @@ UtopiaMall is a virtual shopping experience that reimagines how we buy for fashi
 
 ## Getting Started
 
-Follow these steps to get started with UtopiaMall App:
+Follow these steps to get started with Utopiamall App:
 
 1. **Clone the repository:**
 
   ``` 
 
-  git clone https://github.com/lewiskirori/UtopiaMall-App.git
+  git clone https://github.com/lewiskirori/Utopiamall-App.git
    
   ```
 
 ## Acknowledgments
 
-We'd like to thank our incredible community of fashion enthusiasts who have helped shape the UtopiaMall App.
+We'd like to thank our incredible community of fashion enthusiasts who have helped shape the Utopiamall App.
 
 Have fun shopping!
