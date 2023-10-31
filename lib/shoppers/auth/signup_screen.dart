@@ -43,7 +43,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
     catch(e){
-
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -64,12 +65,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if(res.statusCode == 200){
         var resBodyOfSignUp = jsonDecode(res.body);
         if(resBodyOfSignUp['success'] == true){
-          Fluttertoast.showToast(msg: "Congratulations, signed up successfully! Welcome aboard.");
+          Fluttertoast.showToast(msg: "Congrats, signed up successfully... Welcome aboard!");
+        } else {
+          Fluttertoast.showToast(msg: "Oops! Sign up was unsuccessful. Please try again.");
         }
       }
     }
     catch(e){
-
+      print(e.toString());
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
@@ -247,7 +251,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ()=> TextFormField(
                                       controller: passwordController,
                                       obscureText: isObsecure.value,
-                                      validator: (val) => val == "" ? "Your password must contain at least 8 characters." : null,
+                                      validator: (val) {
+                                        if (val!.isEmpty) {
+                                          return "Don't forget to enter your password.";
+                                        }
+                                        if (val.length < 8) {
+                                          return "Your password must contain at least 8 characters.";
+                                        }
+                                        return null;
+                                      },
                                       decoration: InputDecoration(
                                         prefixIcon: const Icon(
                                           Icons.lock_sharp,
