@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Shopper {
   int shopper_id;
   String shopper_username;
@@ -9,6 +11,13 @@ class Shopper {
     this.shopper_username,
     this.shopper_email,
     this.shopper_password,
+  );
+
+  factory Shopper.fromJson(Map<String, dynamic> json) => Shopper(
+    int.parse(json["shopper_id"]),
+    json["shopper_username"],
+    json["shopper_email"],
+    json["shopper_password"],
   );
 
   Map<String, dynamic> toJson() => {

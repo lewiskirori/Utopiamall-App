@@ -65,9 +65,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if(res.statusCode == 200){
         var resBodyOfSignUp = jsonDecode(res.body);
         if(resBodyOfSignUp['success'] == true){
-          Fluttertoast.showToast(msg: "Congrats, signed up successfully... Welcome aboard!");
+          Fluttertoast.showToast(msg: "Congrats! You're signed up. Welcome aboard!");
+
+          setState(() {
+            usernameController.clear();
+            emailController.clear();
+            passwordController.clear();
+          });
         } else {
-          Fluttertoast.showToast(msg: "Oops! Sign up was unsuccessful. Please try again.");
+          Fluttertoast.showToast(msg: "Oops! Sign up went wrong. Please try again.");
         }
       }
     }
@@ -146,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // Sub-heading
                                   Container(
                                     child: const Text(
-                                      "Join us and enjoy our futuristic fashion era!",
+                                      "Join and enjoy our futuristic fashion era!",
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.white60,

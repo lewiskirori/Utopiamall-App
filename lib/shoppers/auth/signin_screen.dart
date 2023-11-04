@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:utopiamall/api_conn/api_conn.dart';
 import 'package:utopiamall/shoppers/auth/signup_screen.dart';
+import 'package:http/http.dart' as http;
+import 'package:utopiamall/shoppers/model/shopper.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -14,6 +20,30 @@ class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var isObsecure = true.obs;
+
+  loginShopperNow() async{
+    var res = await http.post(
+      Uri.parse(API.signIn),
+      body: {
+        "shopper_email": emailController.text.trim(),
+        "shopper_password": passwordController.text.trim(),
+      },
+    );
+
+    if(res.statusCode == 200){
+      var resBodyOfSignIn = jsonDecode(res.body);
+      if(resBodyOfSignIn['success'] == true){
+        Fluttertoast.showToast(msg: "Welcome back! You're now logged in.");
+
+        Shopper shopperInfo = Shopper.fromJson(resBodyOfSignIn["shopperData"]);
+
+        // Store shopperInfo
+        
+      } else {
+        Fluttertoast.showToast(msg: "Incorrect email or password. Please try again.");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
                                       onTap: (){
-                  
+                                        loginShopperNow();
                                       },
                                       borderRadius: BorderRadius.circular(30),
                                       child: Padding(
