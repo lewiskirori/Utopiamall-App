@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if(res.statusCode == 200){
       var resBodyOfSignIn = jsonDecode(res.body);
       if(resBodyOfSignIn['success'] == true){
-        Fluttertoast.showToast(msg: "Welcome back! You're now logged in.");
+        Fluttertoast.showToast(msg: "Woohoo! You're now signed in.");
 
         Shopper shopperInfo = Shopper.fromJson(resBodyOfSignIn["shopperData"]);
 
