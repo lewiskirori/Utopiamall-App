@@ -1,5 +1,5 @@
 class API {
-  static const hostConnect = "https://3fea-93-190-141-66.ngrok-free.app/utopiamall_api";
+  static const hostConnect = "https://a310-93-190-141-66.ngrok-free.app/utopiamall_api";
   static const hostConnectShopper = "$hostConnect/shopper";
 
   // Sign up shopper
