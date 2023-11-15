@@ -35,7 +35,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         var resBodyOfValidateEmail = jsonDecode(res.body);
 
         if(resBodyOfValidateEmail['emailFound'] == true){
-          Fluttertoast.showToast(msg: "An account with this email address already exists. Please try another email address to create a new account.");
+          Fluttertoast.showToast(
+            msg: "An account with this email address already exists. Please try another email address to create a new account.",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Color(0x99ff5722),
+            textColor: Colors.white,
+            fontSize: 16.0,
+            webBgColor: "#FF5722",
+            webPosition: "right",
+            webShowClose: true,
+          );
         }
         else{
           signupAndSaveShopperRecord();
@@ -65,7 +76,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if(res.statusCode == 200){
         var resBodyOfSignUp = jsonDecode(res.body);
         if(resBodyOfSignUp['success'] == true){
-          Fluttertoast.showToast(msg: "Congrats! You're signed up. Welcome aboard!");
+          Fluttertoast.showToast(
+            msg: "Congratulations! You’re signed up. Welcome aboard!",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0,
+            webBgColor: "#008080",
+            webPosition: "right",
+            webShowClose: true,
+          );
 
           setState(() {
             usernameController.clear();
@@ -73,7 +95,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             passwordController.clear();
           });
         } else {
-          Fluttertoast.showToast(msg: "Oops! Sign up went wrong. Please try again.");
+          Fluttertoast.showToast(
+            msg: "Oops! Sign up went wrong. Please try again.",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Color(0x99ff5722),
+            textColor: Colors.white,
+            fontSize: 16.0,
+            webBgColor: "#FF5722",
+            webPosition: "right",
+            webShowClose: true,
+          );
         }
       }
     }

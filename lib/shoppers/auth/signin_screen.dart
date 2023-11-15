@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:utopiamall/api_conn/api_conn.dart';
 import 'package:utopiamall/shoppers/auth/signup_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:utopiamall/shoppers/fragments/dashboard_frag.dart';
 import 'package:utopiamall/shoppers/model/shopper.dart';
+import 'package:utopiamall/shoppers/shopperPreferences/shopper_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -22,26 +24,56 @@ class _LoginScreenState extends State<LoginScreen> {
   var isObsecure = true.obs;
 
   loginShopperNow() async{
-    var res = await http.post(
-      Uri.parse(API.signIn),
-      body: {
-        "shopper_email": emailController.text.trim(),
-        "shopper_password": passwordController.text.trim(),
-      },
-    );
+    try {
+      var res = await http.post(
+        Uri.parse(API.signIn),
+        body: {
+          "shopper_email": emailController.text.trim(),
+          "shopper_password": passwordController.text.trim(),
+        },
+      );
 
-    if(res.statusCode == 200){
-      var resBodyOfSignIn = jsonDecode(res.body);
-      if(resBodyOfSignIn['success'] == true){
-        Fluttertoast.showToast(msg: "Woohoo! You're now signed in.");
+      if(res.statusCode == 200){
+        var resBodyOfSignIn = jsonDecode(res.body);
+        if(resBodyOfSignIn['success'] == true){
+          Fluttertoast.showToast(
+            msg: "Woohoo… You are now signed in!",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0,
+            webBgColor: "#008080",
+            webPosition: "right",
+            webShowClose: true,
+          );
 
-        Shopper shopperInfo = Shopper.fromJson(resBodyOfSignIn["shopperData"]);
+          Shopper shopperInfo = Shopper.fromJson(resBodyOfSignIn["shopperData"]);
 
-        // Store shopperInfo
-        
-      } else {
-        Fluttertoast.showToast(msg: "Incorrect email or password. Please try again.");
+          // Store shopperInfo
+          await RememberShopperPrefs.storeRememberShopper(shopperInfo);
+
+          Future.delayed(Duration(milliseconds: 2000), (){
+            Get.to(DashboardFrag());
+          });
+        } else {
+          Fluttertoast.showToast(
+            msg: "Invalid email or password. Please try again.",
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.red.shade800,
+            textColor: Colors.white,
+            fontSize: 16.0,
+            webBgColor: "#FF0000",
+            webPosition: "right",
+            webShowClose: true,
+          );
+        }
       }
+    } catch(errorMsg) {
+      print("Oops! Something went wrong :: " + errorMsg.toString());
     }
   }
 
@@ -174,7 +206,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ()=> TextFormField(
                                       controller: passwordController,
                                       obscureText: isObsecure.value,
-                                      validator: (val) => val == "" ? "Your password must contain at least 8 characters." : null,
+                                      validator: (val) {
+                                        if (val!.isEmpty) {
+                                          return "Don't forget to enter your password.";
+                                        }
+                                        if (val.length < 8) {
+                                          return "Your password must contain at least 8 characters.";
+                                        }
+                                        return null;
+                                      },
                                       decoration: InputDecoration(
                                         prefixIcon: const Icon(
                                           Icons.lock_sharp,
@@ -235,7 +275,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
                                       onTap: (){
-                                        loginShopperNow();
+                                        if(formKey.currentState!.validate()){
+                                          loginShopperNow();
+                                        }
                                       },
                                       borderRadius: BorderRadius.circular(30),
                                       child: Padding(
