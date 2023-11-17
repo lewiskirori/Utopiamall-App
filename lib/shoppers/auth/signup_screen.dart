@@ -195,7 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                   SizedBox(height: 16,),
 
-                                  // User name
+                                  // Account Username
                                   TextFormField(
                                     controller: usernameController,
                                     validator: (val) => val == "" ? "Enter a valid account username." : null,
@@ -305,16 +305,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           color: Colors.black,
                                         ),
                                         suffixIcon: Obx(
-                                          ()=> GestureDetector(
-                                            onTap: ()
-                                            {
-                                              isObsecure.value = !isObsecure.value;
-                                            },
-                                            child: Icon(
-                                              isObsecure.value ? Icons.visibility_off :  Icons.visibility,
-                                              color: Colors.black,
+                                          () => Container(
+                                            width: 40,
+                                            child: ClipOval(
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  isObsecure.value = !isObsecure.value;
+                                                },
+                                                child: Icon(
+                                                  isObsecure.value ? Icons.visibility_off :  Icons.visibility,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             ),
-                                          )
+                                          ),
                                         ),
                                         hintText: "Password",
                                         border: OutlineInputBorder(

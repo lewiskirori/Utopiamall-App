@@ -221,16 +221,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.black,
                                         ),
                                         suffixIcon: Obx(
-                                          ()=> GestureDetector(
-                                            onTap: ()
-                                            {
-                                              isObsecure.value = !isObsecure.value;
-                                            },
-                                            child: Icon(
-                                              isObsecure.value ? Icons.visibility_off :  Icons.visibility,
-                                              color: Colors.black,
+                                          () => Container(
+                                            width: 40,
+                                            child: ClipOval(
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  isObsecure.value = !isObsecure.value;
+                                                },
+                                                child: Icon(
+                                                  isObsecure.value ? Icons.visibility_off :  Icons.visibility,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
                                             ),
-                                          )
+                                          ),
                                         ),
                                         hintText: "Password",
                                         border: OutlineInputBorder(
