@@ -22,6 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   var passwordController = TextEditingController();
   var isObsecure = true.obs;
 
+  bool isLoading = false;
+
   validateShopperEmail() async {
     try{
       var res = await http.post(
@@ -40,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
-            backgroundColor: Color(0x99ff5722),
+            backgroundColor: Color(0xCCff5722),
             textColor: Colors.white,
             fontSize: 16.0,
             webBgColor: "#FF5722",
@@ -100,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
-            backgroundColor: Color(0x99ff5722),
+            backgroundColor: Color(0xCCff5722),
             textColor: Colors.white,
             fontSize: 16.0,
             webBgColor: "#FF5722",
@@ -362,10 +364,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
-                                      onTap: (){
+                                      onTap: () async {
                                         if(formKey.currentState!.validate()){
-                                          // Email validation
-                                          validateShopperEmail();
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+
+                                          // Mail validation
+                                          await validateShopperEmail();
+
+                                          setState(() {
+                                            isLoading = false;
+                                          });
                                         }
                                       },
                                       borderRadius: BorderRadius.circular(30),
@@ -374,13 +384,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           vertical: 10,
                                           horizontal: 28,
                                         ),
-                                        child: Text(
-                                          "Get Started",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                          ),
-                                        ),
+                                        child: isLoading
+                                          ? SizedBox(
+                                              width: 23,
+                                              height: 23,
+                                              child: CircularProgressIndicator(
+                                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                              ),
+                                            )
+                                            : Text(
+                                                "Get Started",
+                                                style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                ),
+                                              ),
                                       ),
                                     ),
                                   ),

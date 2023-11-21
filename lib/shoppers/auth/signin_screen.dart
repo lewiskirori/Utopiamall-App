@@ -23,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   var passwordController = TextEditingController();
   var isObsecure = true.obs;
 
+  bool isLoading = false;
+
   loginShopperNow() async{
     try {
       var res = await http.post(
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
           });
         } else {
           Fluttertoast.showToast(
-            msg: "Invalid email or password. Please try again.",
+            msg: "Wrong email or password. Please try again.",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
@@ -278,9 +280,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(30),
                                     child: InkWell(
-                                      onTap: (){
+                                      onTap: () async {
                                         if(formKey.currentState!.validate()){
-                                          loginShopperNow();
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          
+                                          // Credential validation
+                                          await loginShopperNow();
+
+                                          setState(() {
+                                            isLoading = false;
+                                          });
                                         }
                                       },
                                       borderRadius: BorderRadius.circular(30),
@@ -289,13 +300,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                           vertical: 10,
                                           horizontal: 28,
                                         ),
-                                        child: Text(
-                                          "Sign In",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                          ),
-                                        ),
+                                        child: isLoading
+                                          ? SizedBox(
+                                              width: 23,
+                                              height: 23,
+                                              child: CircularProgressIndicator(
+                                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                              ),
+                                            )
+                                            : Text(
+                                                "Sign In",
+                                                style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                ),
+                                              ),
                                       ),
                                     ),
                                   ),

@@ -60,7 +60,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/um--high--3--10-logo.png"
+  image_path: "assets/um-001-logo.png"
 
 flutter:
 
