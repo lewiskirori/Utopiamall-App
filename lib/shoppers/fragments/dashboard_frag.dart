@@ -24,7 +24,7 @@ class DashboardFrag extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          "Welcome to Your U-Dash!",
+          "Welcome to Your Utopia Dashboard!",
           style: TextStyle(fontSize: 18),
         ),
       ),
