@@ -319,7 +319,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                                   isObsecure.value = !isObsecure.value;
                                                 },
                                                 child: Icon(
-                                                  isObsecure.value ? Icons.visibility_off :  Icons.visibility,
+                                                  isObsecure.value ? Icons.visibility_off_sharp :  Icons.visibility_sharp,
                                                   color: Colors.black,
                                                 ),
                                               ),
