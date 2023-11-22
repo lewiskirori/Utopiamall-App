@@ -79,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         var resBodyOfSignUp = jsonDecode(res.body);
         if(resBodyOfSignUp['success'] == true){
           Fluttertoast.showToast(
-            msg: "Congratulations! You’re signed up. Welcome aboard!",
+            msg: "Congratulations!\nYou’re signed up. Welcome aboard!",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
@@ -96,6 +96,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             emailController.clear();
             passwordController.clear();
           });
+
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+          );
         } else {
           Fluttertoast.showToast(
             msg: "Oops! Sign up went wrong. Please try again.",
