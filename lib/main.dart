@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:utopiamall/shoppers/auth/signin_screen.dart';
+import 'package:utopiamall/shoppers/fragments/dashboard_frag.dart';
+import 'package:utopiamall/shoppers/shopperPreferences/shopper_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // Application root widget
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -34,11 +36,16 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.jostTextTheme(),
       ),
       home: FutureBuilder(
+        future: RememberShopperPrefs.readShopperInfo(),
         builder: (context, dataSnapShot)
         {
-          return LoginScreen();
-        }
-        ),
+          if(dataSnapShot.data == null) {
+            return LoginScreen();
+          } else {
+            return DashboardFrag();
+          }
+        },
+      ),
     );
   }
 }
