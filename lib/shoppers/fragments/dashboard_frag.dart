@@ -51,7 +51,7 @@ class DashboardFrag extends StatelessWidget {
     {
       "active_icon": Icons.person_sharp,
       "non_active_icon": Icons.person_outline_sharp,
-      "label": "Profile",
+      "label": "Account",
     },
   ];
 

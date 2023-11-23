@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         var resBodyOfSignIn = jsonDecode(res.body);
         if(resBodyOfSignIn['success'] == true){
           Fluttertoast.showToast(
-            msg: "Woohoo!\nYou’re now signed in!",
+            msg: "Woohoo!\nYou are now signed in…",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
