@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           Shopper shopperInfo = Shopper.fromJson(resBodyOfSignIn["shopperData"]);
 
-          // Store shopper info
+          // Conserve shopper info
           await RememberShopperPrefs.storeShopperInfo(shopperInfo);
 
           Future.delayed(Duration(milliseconds: 2000), (){
