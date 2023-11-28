@@ -23,4 +23,9 @@ class RememberShopperPrefs {
     }
     return currentShopperInfo;
   }
+
+  static Future<void> clearShopperInfo() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.remove("currentShopper");
+  }
 }

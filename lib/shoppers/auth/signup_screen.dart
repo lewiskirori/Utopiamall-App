@@ -141,6 +141,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 285,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 10,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Image.asset(
                       "images/andrea--register.jpg",
                     ),

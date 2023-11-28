@@ -25,6 +25,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isLoading = false;
 
+  String getGreetings() {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+
+    if (hour >= 0 && hour < 12) {
+      return "Good Morning";
+    } else if (hour >= 12 && hour < 16) {
+      return "Good Afternoon";
+    } else if (hour >= 16 && hour < 21) {
+      return "Good Evening";
+    } else {
+      return "Good Night";
+    }
+  }
+
   loginShopperNow() async{
     try {
       var res = await http.post(
@@ -39,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         var resBodyOfSignIn = jsonDecode(res.body);
         if(resBodyOfSignIn['success'] == true){
           Fluttertoast.showToast(
-            msg: "Woohoo!\nYou are now signed in…",
+            msg: "${getGreetings()}!\nYou’re now signed in.",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 3,
@@ -98,6 +113,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 285,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 10,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: Image.asset(
                       "images/rdne--login.jpg",
                     ),
