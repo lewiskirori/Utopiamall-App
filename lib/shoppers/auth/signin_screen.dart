@@ -96,6 +96,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color shadowColor = MaterialColor(0xFFB0188E, {
+      50: Color(0xFFE8C4DB),
+      100: Color(0xFFD29BC8),
+      200: Color(0xFFB97CB3),
+      300: Color(0xFF9E579A),
+      400: Color(0xFF8B398D),
+      500: Color(0xFFB0188E),
+      600: Color(0xFF950681),
+      700: Color(0xFF7E0676),
+      800: Color(0xFF6A056C),
+      900: Color(0xFF51045C),
+    });
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: LayoutBuilder(
@@ -116,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.white.withOpacity(0.2),
+                          color: shadowColor.withOpacity(0.2),
                           spreadRadius: 5,
                           blurRadius: 10,
                           offset: Offset(0, 3),
