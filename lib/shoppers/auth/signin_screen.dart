@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (hour >= 16 && hour < 21) {
       return "Good Evening";
     } else {
-      return "Good Night";
+      return "Zzzzzzz";
     }
   }
 
