@@ -32,4 +32,4 @@ Follow these steps to get started with Utopiamall App:
 
 We'd like to thank our incredible community of fashion enthusiasts who have helped shape the Utopiamall App.
 
-Have fun shopping!
+Fantastic shopping!
