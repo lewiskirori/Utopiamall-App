@@ -6,7 +6,7 @@ Welcome to Utopiamall, the futuristic-era of fashion!
 
 ## Description
 
-Utopiamall is a virtual shopping experience that reimagines how we buy for fashion and style. Our app is the ultimate fashion endpoint since it focuses on providing a seamless and stylish shopping experience for an extensive variety of clothing as well as accessories.
+Utopiamall is a virtual shopping experience that reimagines how we buy for fashion and style. Our app is the ultimate fashion endpoint since it focuses on providing a seamless and stylish shopping experience for an extensive variety of clothing and accessories.
 
 ## Features
 
